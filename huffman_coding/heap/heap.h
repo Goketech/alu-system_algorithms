@@ -80,10 +80,11 @@ binary_tree_node_t *heapInsert(binary_tree_node_t **root,
 binary_tree_node_t *heap_insert(heap_t *heap, void *data);
 
 /* task 3. Min Binary Heap - Extract */
-/* heap_extract.c */
+/* binary_tree_node.c */
 size_t binaryTreeSize(const binary_tree_node_t *tree);
 int binaryTreeIsComplete(const binary_tree_node_t *tree,
 			  size_t i, size_t size);
+/* heap_extract.c */
 binary_tree_node_t *lastInLevelOrder(binary_tree_node_t *root);
 void minHeapSiftDown(binary_tree_node_t *root,
 		     int (data_cmp)(void *, void *));
