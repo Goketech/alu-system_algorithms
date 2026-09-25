@@ -73,6 +73,23 @@ size_t *tallyFrequencies(FILE *in_file, size_t in_file_size)
  * @data: char array modified by reference; byte values appearing in the input
  *   file
  * @freq: size_t array modified by reference; byte value frequencies in the
+ *   input file, corresponding by index to `data`
+ * @freq_size: pointer to size_t modified by reference; count of unique byte
+ *   values appearing in the input file, and thus the size of `data`/`freq`
+ * Return: 0 on success, 1 on failure
+ */
+int prepareTreeInputs(size_t *freqs, char **data,
+		      size_t **freq, size_t *freq_size)
+{
+	size_t i, j;
+
+	*freq_size = 0;
+	for (i = 0; i < CHAR_RANGE; i++)
+		if (freqs[i])
+			(*freq_size)++;
+
+	*data = malloc(sizeof(char) * *freq_size);
+	if (!(*data))
 		return (1);
 
 	*freq = malloc(sizeof(size_t) * *freq_size);
@@ -157,7 +174,7 @@ int huffmanCompress(FILE *in_file, FILE *out_file, long int in_file_size)
 {
 	unsigned char w_buff[BUF_SIZE] = {0};
 	bit_t w_bit = {0, 0, 0};
-	huffman_header_t header = {"\177HUF", 0, 0, 0};
+	huffman_header_t header = {{'\177', 'H', 'U', 'F'}, 0, 0, 0};
 	binary_tree_node_t *h_tree = NULL;
 	size_t freq_size = 0;
 

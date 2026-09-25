@@ -78,7 +78,7 @@ all: ../heap/heap.h ../huffman.h _huffman.h \
 	serialization.o \
 	_binary_tree_print.o \
 	read_write.o
-	$(CC) $(CFLAGS) ../heap/heap.h ../huffman.h _huffman.h \
+	$(CC) $(CFLAGS) \
 	heap_create.o \
 	binary_tree_node.o \
 	heap_insert.o \
