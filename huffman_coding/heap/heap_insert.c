@@ -73,6 +73,15 @@ void BTQueueClear(bt_node_queue_t **queue)
 /**
  * BTCompleteInsert - uses queue to insert new leaves into a binary
  *   tree in level order, keeping tree complete
+ *
+ * @root: pointer to root of tree in which to insert
+ * @data: pointer to data to store in newly inserted node
+ * Return: pointer to newly inserted node, or NULL on failure
+ */
+binary_tree_node_t *BTCompleteInsert(binary_tree_node_t *root, void *data)
+{
+	bt_node_queue_t *queue = NULL;
+	binary_tree_node_t *new = NULL;
 
 	if (!root)
 		return (binary_tree_node(NULL, data));

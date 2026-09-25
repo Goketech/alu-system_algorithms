@@ -73,8 +73,20 @@ binary_tree_node_t *lastInLevelOrder(binary_tree_node_t *root)
 
 	if (!root ||
 	    !binaryTreeIsComplete(root, 0, binaryTreeSize(root)))
-				last = queue->node;
-		}
+		return (NULL);
+
+	queue = BTQueuePush(&queue, root);
+	if (!queue)
+		return (NULL);
+
+	while (queue)
+	{
+		last = queue->node;
+
+		if (queue->node->left)
+			BTQueuePush(&queue, queue->node->left);
+		if (queue->node->right)
+			BTQueuePush(&queue, queue->node->right);
 
 		BTQueueAdvance(&queue);
 	}
