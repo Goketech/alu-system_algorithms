@@ -73,6 +73,56 @@ queue_t *pathFromDijkstraQueue(dijkstra_vertex_t *d_queue,
   * Return: 1 if param1 should be ordered first, -1 if param2 is first,
   *   or 0 if they are the same
   */
+int compareWeights(const void *param1, const void *param2)
+{
+	const dijkstra_vertex_t *dv1 = (const dijkstra_vertex_t *)param1;
+	const dijkstra_vertex_t *dv2 = (const dijkstra_vertex_t *)param2;
+
+	if (dv1->cml_weight < dv2->cml_weight)
+		return (-1);
+	if (dv1->cml_weight > dv2->cml_weight)
+		return (1);
+
+	/* tiebreaker for stable sort */
+	if (dv1->vertex < dv2->vertex)
+		return (-1);
+	if (dv1->vertex > dv2->vertex)
+		return (1);
+
+	return (0);
+}
+
+
+/**
+  * assessEdges - checks the edges of the vertex at the head of the priority
+  *   queue, updating the cumulative weight and path_via of each neighbor if a
+  *   shorter path is found through the head, then re-sorts the remaining queue
+  *
+  * @d_queue: array of structs containing current vertex, cumulative weight,
+  *   previous vertex in current optimal route
+  * @nb_vertices: total amount of vertices in graph
+  * @dq_head_i: index in d_queue that marks the current head of the priority
+  *   queue
+  */
+void assessEdges(dijkstra_vertex_t *d_queue, size_t nb_vertices,
+		 size_t dq_head_i)
+{
+	dijkstra_vertex_t dq_head;
+	edge_t *temp_e = NULL;
+	size_t i;
+
+	if (!d_queue)
+		return;
+
+	dq_head = d_queue[dq_head_i];
+
+	for (temp_e = dq_head.vertex->edges; temp_e; temp_e = temp_e->next)
+	{
+		for (i = dq_head_i; i < nb_vertices; i++)
+		{
+			if (temp_e->dest == d_queue[i].vertex)
+			{
+				if (dq_head.cml_weight + temp_e->weight <
 				    d_queue[i].cml_weight)
 				{
 					d_queue[i].cml_weight =
