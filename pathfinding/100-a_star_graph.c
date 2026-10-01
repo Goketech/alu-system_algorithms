@@ -73,6 +73,61 @@ queue_t *pathFromAStarQueue(a_star_vertex_t *d_queue,
   * @param2: void * due to function prototype expected by qsort(),
   *   expected to be castable to dijkstra_vertex *
   * Return: 1 if param1 should be ordered first, -1 if param2 is first,
+  *   or 0 if they are the same
+  */
+int compareWeightPlusHeuristic(const void *param1, const void *param2)
+{
+	const a_star_vertex_t *asv1 = (const a_star_vertex_t *)param1;
+	const a_star_vertex_t *asv2 = (const a_star_vertex_t *)param2;
+	size_t total1 = asv1->cml_weight + asv1->heuristic;
+	size_t total2 = asv2->cml_weight + asv2->heuristic;
+
+	if (total1 < total2)
+		return (-1);
+	if (total1 > total2)
+		return (1);
+
+	/* tiebreaker for stable sort */
+	if (asv1->vertex < asv2->vertex)
+		return (-1);
+	if (asv1->vertex > asv2->vertex)
+		return (1);
+
+	return (0);
+}
+
+
+/**
+  * assessEdges - checks the edges of the vertex at the head of the priority
+  *   queue, updating the cumulative weight and path_via of each neighbor if a
+  *   shorter path is found through the head, then re-sorts the remaining queue
+  *
+  * @as_queue: array of structs containing current vertex, cumulative weight,
+  *   heuristic, and previous vertex in current optimal route
+  * @nb_vertices: total amount of vertices in graph
+  * @asq_head_i: index in as_queue that marks the current head of the
+  *   priority queue
+  */
+void assessEdges(a_star_vertex_t *as_queue, size_t nb_vertices,
+		 size_t asq_head_i)
+{
+	a_star_vertex_t asq_head;
+	edge_t *temp_e = NULL;
+	size_t i;
+
+	if (!as_queue)
+		return;
+
+	asq_head = as_queue[asq_head_i];
+
+	for (temp_e = asq_head.vertex->edges; temp_e; temp_e = temp_e->next)
+	{
+		for (i = asq_head_i; i < nb_vertices; i++)
+		{
+			if (temp_e->dest == as_queue[i].vertex)
+			{
+				if (asq_head.cml_weight + temp_e->weight <
+				    as_queue[i].cml_weight)
 				{
 					as_queue[i].cml_weight =
 						asq_head.cml_weight +
