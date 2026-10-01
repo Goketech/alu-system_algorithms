@@ -1,0 +1,19 @@
+pathfinding/2-dijkstra_graph.c
+  s_fcf9037f529837::t_a8b9461a5e39ea 76-125
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.13",
+  "base_commit_sha": "418e2dbcb64cd2e751e1c07e4a9c536144d1ba0e",
+  "prompts": {},
+  "sessions": {
+    "s_fcf9037f529837": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "96bc24fb-15de-4156-8441-6b5ffc62ab40",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Modupe Akanni <modupe775@gmail.com>"
+    }
+  }
+}
