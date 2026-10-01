@@ -1,0 +1,19 @@
+pathfinding/100-a_star_graph.c
+  s_876bffe319207f::t_4d76b1ba2ec5c8 76-130
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.13",
+  "base_commit_sha": "6e8671c66f58df68b49ce1b019dceb16c084b667",
+  "prompts": {},
+  "sessions": {
+    "s_876bffe319207f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bb95db1d-77c3-4d30-aec5-d9b10f805333",
+        "model": "unknown"
+      },
+      "human_author": "Modupe Akanni <modupe775@gmail.com>"
+    }
+  }
+}
