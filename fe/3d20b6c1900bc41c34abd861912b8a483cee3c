@@ -1,0 +1,30 @@
+pathfinding/2-dijkstra_graph.c
+  h_00951db86aaac4 1-198
+pathfinding/100-a_star_graph.c
+  h_00951db86aaac4 1-198
+pathfinding/README.md
+  h_00951db86aaac4 1
+pathfinding/pathfinding.h
+  h_00951db86aaac4 1-82
+pathfinding/1-backtracking_graph.c
+  h_00951db86aaac4 1-170
+pathfinding/0-backtracking_array.c
+  h_00951db86aaac4 1-187
+pathfinding/graphs.h
+  h_00951db86aaac4 1-164
+pathfinding/queues.h
+  h_00951db86aaac4 1-78
+pathfinding/euclideanDist.c
+  h_00951db86aaac4 1-55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.13",
+  "base_commit_sha": "fe3d20b6c1900bc41c34abd861912b8a483cee3c",
+  "prompts": {},
+  "humans": {
+    "h_00951db86aaac4": {
+      "author": "Modupe Akanni <modupe775@gmail.com>"
+    }
+  }
+}
